@@ -31,6 +31,7 @@ services:
       - "13564:3000"
     environment:
       - DATABASE_URL=postgresql://calcom:calcom123@postgres:5432/calcom
+      - DATABASE_DIRECT_URL=postgresql://calcom:calcom123@postgres:5432/calcom
       - NEXTAUTH_SECRET=xK9mP2nQ8vL5wR1jT4uY7sA3dF6hG0iB
       - CALENDSO_ENCRYPTION_KEY=xK9mP2nQ8vL5wR1jT4uY7sA3dF6hG0iB
       - NEXTAUTH_URL=http://todaysapp.christopherfullon.com:13564
