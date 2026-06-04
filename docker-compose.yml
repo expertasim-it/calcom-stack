@@ -34,6 +34,8 @@ services:
       - NEXTAUTH_SECRET=xK9mP2nQ8vL5wR1jT4uY7sA3dF6hG0iB
       - CALENDSO_ENCRYPTION_KEY=xK9mP2nQ8vL5wR1jT4uY7sA3dF6hG0iB
       - NEXTAUTH_URL=http://todaysapp.christopherfullon.com:13564
+      - WEBAPP_URL=http://todaysapp.christopherfullon.com:13564
+      - NEXT_PUBLIC_WEBAPP_URL=http://todaysapp.christopherfullon.com:13564
       - CALCOM_TELEMETRY_DISABLED=1
       - NODE_ENV=production
     depends_on:
