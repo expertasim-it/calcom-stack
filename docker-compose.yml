@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: calcom_postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=calcom
+      - POSTGRES_PASSWORD=calcom123
+      - POSTGRES_DB=calcom
+    volumes:
+      - calcom_postgres_data:/var/lib/postgresql/data
+    networks:
+      - calcom_net
+
+  redis:
+    image: redis:7-alpine
+    container_name: calcom_redis
+    restart: unless-stopped
+    volumes:
+      - calcom_redis_data:/data
+    networks:
+      - calcom_net
+
+  calcom:
+    image: calcom/cal.com:latest
+    container_name: calcom
+    restart: unless-stopped
+    ports:
+      - "13564:3000"
+    environment:
+      - DATABASE_URL=postgresql://calcom:calcom123@postgres:5432/calcom
+      - NEXTAUTH_SECRET=xK9mP2nQ8vL5wR1jT4uY7sA3dF6hG0iB
+      - CALENDSO_ENCRYPTION_KEY=xK9mP2nQ8vL5wR1jT4uY7sA3dF6hG0iB
+      - NEXTAUTH_URL=http://todaysapp.christopherfullon.com:13564
+      - CALCOM_TELEMETRY_DISABLED=1
+      - NODE_ENV=production
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - calcom_net
+
+volumes:
+  calcom_postgres_data:
+  calcom_redis_data:
+
+networks:
+  calcom_net:
+    driver: bridge
