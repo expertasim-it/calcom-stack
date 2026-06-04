@@ -36,7 +36,7 @@ services:
       - NEXTAUTH_URL=http://todaysapp.christopherfullon.com:13564
       - WEBAPP_URL=http://todaysapp.christopherfullon.com:13564
       - NEXT_PUBLIC_WEBAPP_URL=http://todaysapp.christopherfullon.com:13564
-      - ALLOWED_HOSTNAMES=todaysapp.christopherfullon.com
+      - ALLOWED_HOSTNAMES=["todaysapp.christopherfullon.com"]
       - CALCOM_TELEMETRY_DISABLED=1
       - NODE_ENV=production
     depends_on:
