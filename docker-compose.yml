@@ -24,7 +24,7 @@ services:
       - caldiy_net
 
   calcom:
-    image: calcom/cal.diy:latest
+    image: calcom.docker.scarf.sh/calcom/cal.diy
     container_name: caldiy
     restart: unless-stopped
     ports:
