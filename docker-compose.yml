@@ -3,29 +3,29 @@ version: "3.8"
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: calcom_postgres
+    container_name: caldiy_postgres
     restart: unless-stopped
     environment:
       - POSTGRES_USER=calcom
       - POSTGRES_PASSWORD=calcom123
       - POSTGRES_DB=calcom
     volumes:
-      - calcom_postgres_data:/var/lib/postgresql/data
+      - caldiy_postgres_data:/var/lib/postgresql/data
     networks:
-      - calcom_net
+      - caldiy_net
 
   redis:
     image: redis:7-alpine
-    container_name: calcom_redis
+    container_name: caldiy_redis
     restart: unless-stopped
     volumes:
-      - calcom_redis_data:/data
+      - caldiy_redis_data:/data
     networks:
-      - calcom_net
+      - caldiy_net
 
   calcom:
-    image: calcom/cal.com:latest
-    container_name: calcom
+    image: calcom/cal.diy:latest
+    container_name: caldiy
     restart: unless-stopped
     ports:
       - "13564:3000"
@@ -44,12 +44,12 @@ services:
       - postgres
       - redis
     networks:
-      - calcom_net
+      - caldiy_net
 
 volumes:
-  calcom_postgres_data:
-  calcom_redis_data:
+  caldiy_postgres_data:
+  caldiy_redis_data:
 
 networks:
-  calcom_net:
+  caldiy_net:
     driver: bridge
